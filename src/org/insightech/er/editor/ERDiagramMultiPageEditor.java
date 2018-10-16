@@ -72,7 +72,7 @@ import org.insightech.er.util.Format;
 /**
  * <pre>
  * エディタークラス
- * カテゴリー毎にタブ（ページ）を作成する
+ * 为每个类别创建一个选项卡（页面）
  * 各タブ（ページ）には、{@link ERDiagramEditor} を割り当てる
  * </pre>
  */

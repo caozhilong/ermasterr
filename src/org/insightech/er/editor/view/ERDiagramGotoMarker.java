@@ -6,6 +6,11 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.insightech.er.editor.ERDiagramMultiPageEditor;
 
+/**
+ * 编辑器的适配器接口，允许编辑器显示给定标记的位置。
+ * @author caozhilong1
+ *
+ */
 public class ERDiagramGotoMarker implements IGotoMarker {
 
     private final ERDiagramMultiPageEditor editor;

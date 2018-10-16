@@ -11,6 +11,11 @@ import org.insightech.er.editor.model.diagram_contents.element.node.category.Cat
 import org.insightech.er.editor.model.diagram_contents.element.node.table.ERTable;
 import org.insightech.er.editor.model.diagram_contents.element.node.table.TableView;
 
+/**
+ * 
+ * @author caozhilong1
+ *
+ */
 public class CreateRelatedTableCommand extends AbstractCreateRelationCommand {
 
     private Relation relation1;

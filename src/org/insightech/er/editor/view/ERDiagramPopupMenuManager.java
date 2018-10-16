@@ -55,19 +55,29 @@ import org.insightech.er.editor.view.action.testdata.TestDataCreateAction;
 import org.insightech.er.editor.view.action.tracking.ChangeTrackingAction;
 import org.insightech.er.editor.view.action.translation.TranslationManageAction;
 
+/**
+ * ERM弹出框菜单
+ * @author caozhilong1
+ *
+ */
 public class ERDiagramPopupMenuManager extends MenuManager {
 
     private final ActionRegistry actionRegistry;
 
     public ERDiagramPopupMenuManager(final ActionRegistry actionRegistry, final ERDiagram diagram) {
+    	// eclipse 内置的图片
         final ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
 
         this.actionRegistry = actionRegistry;
 
-        final IAction changeViewToPhysicalAction = getAction(ChangeViewToPhysicalAction.ID);
-        final IAction changeViewToLogicalAction = getAction(ChangeViewToLogicalAction.ID);
-        final IAction changeViewToBothAction = getAction(ChangeViewToBothAction.ID);
+        final IAction changeViewToPhysicalAction = getAction(ChangeViewToPhysicalAction.ID);// 显示物理字段
+        final IAction changeViewToLogicalAction = getAction(ChangeViewToLogicalAction.ID); // 显示逻辑字段
+        final IAction changeViewToBothAction = getAction(ChangeViewToBothAction.ID);// 显示逻辑/物理字段
 
+        /**
+         * IE & IDEF1X 区别见
+         * https://www.cnblogs.com/RicCC/archive/2010/09/13/Data-Modeling-Technologies.html
+         */
         final IAction changeToIENotationAction = getAction(ChangeToIENotationAction.ID);
         final IAction changeToIDEF1XNotationAction = getAction(ChangeToIDEF1XNotationAction.ID);
 

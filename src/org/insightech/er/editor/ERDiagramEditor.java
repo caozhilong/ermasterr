@@ -114,8 +114,8 @@ import org.insightech.er.editor.view.tool.ERDiagramPaletteRoot;
 import org.insightech.er.extention.ExtensionLoader;
 
 /**
- * TODO ON UPDATE、ON DELETE のプルダウンを設定できるものだけに制限する<br>
- * TODO デフォルト値に型の制限を適用する<br>
+ * TODO ON UPDATE、ON DELETE下拉菜单只能设置为<br>
+ * TODO 将类型限制应用于默认值<br>
  */
 public class ERDiagramEditor extends GraphicalEditorWithPalette {
 
@@ -198,6 +198,7 @@ public class ERDiagramEditor extends GraphicalEditorWithPalette {
     }
 
     /**
+     * 创建图形界面预览
      * {@inheritDoc}
      */
     @Override

@@ -25,16 +25,16 @@ public class PasteCommand extends AbstractCommand {
 
     private final GraphicalViewer viewer;
 
-    // 貼り付け対象の一覧
+    // 粘贴目标列表
     private final NodeSet nodeElements;
 
-    // 貼り付け時に追加するグループ列の一覧
+    // 在粘贴时添加的组列的列表
     private final GroupSet columnGroups;
 
     private final Category category;
 
     /**
-     * 貼り付けコマンドを作成します。
+     * 创建粘贴命令。
      * 
      * @param editor
      * @param nodeElements
@@ -50,7 +50,7 @@ public class PasteCommand extends AbstractCommand {
 
         final GroupSet groupSet = diagram.getDiagramContents().getGroups();
 
-        // 貼り付け対象に対して処理を繰り返します
+        // 重复处理粘贴目标
         for (final NodeElement nodeElement : nodeElements) {
             nodeElement.setLocation(new Location(nodeElement.getX() + x, nodeElement.getY() + y, nodeElement.getWidth(), nodeElement.getHeight()));
 
@@ -60,21 +60,21 @@ public class PasteCommand extends AbstractCommand {
                 }
             }
 
-            // 貼り付け対象がテーブルの場合
+            // 重复处理粘贴目标
             if (nodeElement instanceof ERTable) {
 
                 final ERTable table = (ERTable) nodeElement;
 
-                // 列に対して処理を繰り返します
+                // 迭代列
                 for (final Column column : new ArrayList<Column>(table.getColumns())) {
 
-                    // 列がグループ列の場合
+                    // 当列是组列时
                     if (column instanceof ColumnGroup) {
                         final ColumnGroup group = (ColumnGroup) column;
 
-                        // この図のグループ列でない場合
+                        // 当它不是这个图的组列时
                         if (!groupSet.contains(group)) {
-                            // 対象のグループ列に追加します。
+                            // 将其添加到目标组列。
                             columnGroups.add(group);
 
                         } else {
@@ -91,13 +91,13 @@ public class PasteCommand extends AbstractCommand {
     }
 
     /**
-     * 貼り付け処理を実行する
+     * 执行粘贴过程
      */
     @Override
     protected void doExecute() {
         final GroupSet columnGroupSet = diagram.getDiagramContents().getGroups();
 
-        // 図にノードを追加します。
+        // 在图中添加一个节点。
         for (final NodeElement nodeElement : nodeElements) {
             if (category != null) {
                 category.add(nodeElement);
@@ -105,7 +105,7 @@ public class PasteCommand extends AbstractCommand {
             diagram.addContent(nodeElement);
         }
 
-        // グループ列を追加します。
+        // 添加组列。
         for (final ColumnGroup columnGroup : columnGroups) {
             columnGroupSet.add(columnGroup);
 
@@ -116,18 +116,18 @@ public class PasteCommand extends AbstractCommand {
 
         diagram.refreshChildren();
 
-        // 貼り付けられたテーブルを選択状態にします。
+        // 将粘贴的表格置于选定状态。
         setFocus();
     }
 
     /**
-     * 貼り付け処理を元に戻す
+     * 恢复粘贴处理
      */
     @Override
     protected void doUndo() {
         final GroupSet columnGroupSet = diagram.getDiagramContents().getGroups();
 
-        // 図からノードを削除します。
+        // 从图中删除节点。
         for (final NodeElement nodeElement : nodeElements) {
             if (category != null) {
                 category.remove(nodeElement);
@@ -135,7 +135,7 @@ public class PasteCommand extends AbstractCommand {
             diagram.removeContent(nodeElement);
         }
 
-        // グループ列を削除します。
+        // 删除组列。
         for (final ColumnGroup columnGroup : columnGroups) {
             columnGroupSet.remove(columnGroup);
 
@@ -148,10 +148,10 @@ public class PasteCommand extends AbstractCommand {
     }
 
     /**
-     * 貼り付けられたテーブルを選択状態にします。
+     * 将粘贴的表格置于选定状态。
      */
     private void setFocus() {
-        // 貼り付けられたテーブルを選択状態にします。
+        // 将粘贴的表格置于选定状态。
         for (final NodeElement nodeElement : nodeElements) {
             final EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(nodeElement);
 
